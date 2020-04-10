@@ -1,0 +1,35 @@
+image: tmaier/docker-compose:latest
+
+stages:
+  - build
+  - test
+  - deploy
+
+before_script:
+  - docker info
+  - docker-compose --version
+
+after_script:
+  - echo 'end jobs'
+
+services:
+  - docker:dind    
+
+job:build:
+  stage: build
+  tags:
+    - docker
+  script:
+    - docker-compose build
+
+job:test:unit:
+  stage: test
+  script: echo 'start jobs'
+
+job:test:functional:
+  stage: test
+  script: echo 'start jobs'
+
+job:deploy:
+  stage: deploy
+  script: echo 'start jobs'
