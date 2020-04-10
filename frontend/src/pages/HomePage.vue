@@ -2,13 +2,14 @@
   <div class="q-pa-md">
     <div class="q-col-gutter-md row items-start">
       <div class="col-6">
-        <q-img
-          :src="url"
-          style="width: 100%"
-        >
-        </q-img>
+        <q-zoom background-color="blue-grey-1">
+          <q-img
+            :src="url"
+            style="width: 100%"
+          >
+          </q-img>
+        </q-zoom>
       </div>
-
       <div class="col-6">
         <q-img :src="url">
           <q-icon
@@ -95,7 +96,12 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
-.q-card
-  height: 450px
+<style lang="stylus">
+.my-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
 </style>
