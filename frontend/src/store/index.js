@@ -3,9 +3,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { FeathersVuex } from 'feathers-vuex'
 import auth from './store.auth'
-
-import axios from 'axios'
-
 Vue.use(Vuex)
 Vue.use(FeathersVuex)
 

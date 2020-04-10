@@ -3,7 +3,7 @@ import feathersClient, { makeServicePlugin, BaseModel } from '../../feathers-cli
 // Extend the base class
 class Drawing extends BaseModel {
   // eslint-disable-next-line no-useless-constructor
-  constructor(data, options) {
+  constructor (data, options) {
     super(data, options)
   }
   static modelName = 'Drawing'
