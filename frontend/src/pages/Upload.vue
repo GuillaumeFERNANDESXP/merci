@@ -405,8 +405,8 @@ export default {
   }),
   methods: {
     getCoordinates (zipcode, country) {
-      // const API_KEY = 'AIzaSyB6FdYCBnqweRJvCo2SnuH1YmH4u6wgEZE'
-      fetch('https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyB6FdYCBnqweRJvCo2SnuH1YmH4u6wgEZE')
+      const API_KEY = 'AIzaEZE'
+      fetch('https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=' + API_KEY)
         .then(response => response.json())
         .then(data => {
           console.log(data)
