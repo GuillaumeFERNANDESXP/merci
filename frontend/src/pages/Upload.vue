@@ -1,10 +1,7 @@
 <template>
   <div class="q-pa-lg">
 
-    <q-form
-      @submit="onSubmit"
-      class="q-gutter-md"
-    >
+    <q-form class="q-gutter-md">
       <h6 class="text-center">Upload your drawing!</h6>
       <q-file
         class="q-pa-xs"
@@ -145,6 +142,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Upload',
   data: () => ({
@@ -404,12 +402,23 @@ export default {
     selection: []
   }),
   methods: {
+    testUploadFile () {
+      axios.post('http://localhost:3030/drawings', {
+        image: 'Fred'
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    },
     getCoordinates (zipcode, country) {
       const API_KEY = ''
       fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + zipcode + country + '&key=' + API_KEY)
         .then(response => response.json())
         .then(data => {
-          console.log(data)
+          console.log(this.image)
         })
     },
     checkFileSize (files) {
