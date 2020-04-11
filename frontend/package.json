@@ -1,8 +1,8 @@
 {
   "name": "app",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "description": "Bravoes is a non-profit website to share thank yous and support messages through kids drawings.",
+  "productName": "Bravoes App",
   "cordovaId": "org.cordova.quasar.app",
   "author": "",
   "private": true,
