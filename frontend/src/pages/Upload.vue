@@ -127,7 +127,7 @@
       </div>
       <div>
         <q-btn
-          @click="getCoordinates('01210','PL')"
+          @click="getCoordinates('75000','FR')"
           label="Submit"
           type="submit"
           color="primary"
@@ -405,8 +405,8 @@ export default {
   }),
   methods: {
     getCoordinates (zipcode, country) {
-      const API_KEY = 'AIzaEZE'
-      fetch('https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=' + API_KEY)
+      const API_KEY = ''
+      fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + zipcode + country + '&key=' + API_KEY)
         .then(response => response.json())
         .then(data => {
           console.log(data)
