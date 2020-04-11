@@ -3,20 +3,20 @@
 
     <q-form
       @submit="onSubmit"
-      @reset="onReset"
       class="q-gutter-md"
     >
       <h6 class="text-center">Upload your drawing!</h6>
-      <q-uploader
-        url="http://localhost:4444/upload"
-        label="Filtered (png only)"
-        multiple
-        :filter="checkFileType"
+      <q-file
+        class="q-pa-xs"
+        filled
+        v-model="model"
+        style="max-width: 325px"
+        label="Drawing"
       />
       <q-input
         filled
         v-model="firstName"
-        label="Your first name *"
+        label="Artist name *"
         lazy-rules
         :rules="[ val => val && val.length > 0 || 'Please type something']"
       />
@@ -25,7 +25,7 @@
         filled
         type="number"
         v-model="age"
-        label="Your age *"
+        label="Artist age *"
         lazy-rules
         :rules="[
           val => val !== null && val !== '' || 'Please type your age',
@@ -53,6 +53,7 @@
         label="Postal code *"
         lazy-rules
         :rules="[
+          val => val !== null && val !== '' || 'Please select a postal code',
         ]"
       />
       <q-input
@@ -64,17 +65,58 @@
         :rules="[
         ]"
       />
-      <q-select
-        label="Tags"
-        filled
-        v-model="tags"
-        use-input
-        use-chips
-        multiple
-        hide-dropdown-icon
-        input-debounce="0"
-        new-value-mode="add"
-      />
+      <div>
+        <q-checkbox
+          v-model="selection"
+          val="healthcarepersonnel"
+          label="healthcare personnel"
+          color="teal"
+        />
+        <q-checkbox
+          v-model="selection"
+          val="firefighters"
+          label="firefighters"
+          color="orange"
+        />
+        <q-checkbox
+          v-model="selection"
+          val="paramedics"
+          label="paramedics"
+          color="red"
+        />
+        <q-checkbox
+          v-model="selection"
+          val="police"
+          label="police"
+          color="cyan"
+        />
+      </div>
+      <div>
+        <q-checkbox
+          v-model="selection"
+          val="healthcarepersonnel"
+          label="healthcare personnel"
+          color="teal"
+        />
+        <q-checkbox
+          v-model="selection"
+          val="firefighters"
+          label="firefighters"
+          color="orange"
+        />
+        <q-checkbox
+          v-model="selection"
+          val="paramedics"
+          label="paramedics"
+          color="red"
+        />
+        <q-checkbox
+          v-model="selection"
+          val="police"
+          label="police"
+          color="cyan"
+        />
+      </div>
       <div>
         <q-btn
           @click="getCoordinates('01210','PL')"
@@ -344,7 +386,8 @@ export default {
       { name: 'Yemen', code: 'YE' },
       { name: 'Zambia', code: 'ZM' },
       { name: 'Zimbabwe', code: 'ZW' }
-    ]
+    ],
+    selection: []
   }),
   methods: {
     getCoordinates (zipcode, country) {
