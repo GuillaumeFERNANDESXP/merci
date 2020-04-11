@@ -1,3 +1,3 @@
-# Merci Project
+# BRAVOES Project
 
-Merci is a non-profit website to share thank yous and support messages through kids drawings.
+Bravoes is a non-profit website to share thank yous and support messages through kids drawings.
