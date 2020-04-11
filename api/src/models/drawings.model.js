@@ -6,7 +6,9 @@ module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const drawings = new Schema({
-    image: {},
+    path: {
+      type: String
+    },
     firstName: {},
     age: {},
     country: {},
