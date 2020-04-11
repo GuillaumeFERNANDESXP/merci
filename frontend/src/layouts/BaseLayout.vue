@@ -6,7 +6,7 @@
           <q-btn
             flat
             @click="$router.push({ name: 'HomePage' })"
-          >MERCI Project</q-btn>
+          >Bravoes Project</q-btn>
         </q-toolbar-title>
         <div v-if="!user">
           <q-btn
