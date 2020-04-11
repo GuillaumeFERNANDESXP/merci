@@ -77,6 +77,7 @@
       />
       <div>
         <q-btn
+          @click="getCoordinates('01210','PL')"
           label="Submit"
           type="submit"
           color="primary"
@@ -346,6 +347,14 @@ export default {
     ]
   }),
   methods: {
+    getCoordinates (zipcode, country) {
+      // const API_KEY = 'AIzaSyB6FdYCBnqweRJvCo2SnuH1YmH4u6wgEZE'
+      fetch('https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyB6FdYCBnqweRJvCo2SnuH1YmH4u6wgEZE')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+        })
+    },
     checkFileSize (files) {
       return files.filter(file => file.size < 2048)
     },
