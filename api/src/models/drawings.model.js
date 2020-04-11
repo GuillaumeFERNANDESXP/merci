@@ -9,6 +9,7 @@ module.exports = function (app) {
     path: {
       type: String
     },
+    image: {},
     firstName: {},
     age: {},
     country: {},

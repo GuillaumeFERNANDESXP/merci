@@ -6,7 +6,7 @@
       <q-file
         class="q-pa-xs"
         filled
-        v-model="model"
+        v-model="image"
         style="max-width: 325px"
         label="Drawing"
       />
@@ -124,9 +124,8 @@
       </div>
       <div>
         <q-btn
-          @click="getCoordinates('75000','FR')"
+          @click="testUploadFile"
           label="Submit"
-          type="submit"
           color="primary"
         />
         <q-btn
@@ -146,7 +145,7 @@ import axios from 'axios'
 export default {
   name: 'Upload',
   data: () => ({
-    image: '',
+    image: null,
     firstName: '',
     age: '',
     country: '',
@@ -403,8 +402,10 @@ export default {
   }),
   methods: {
     testUploadFile () {
-      axios.post('http://localhost:3030/drawings', {
-        image: 'Fred'
+      console.log('post')
+      axios({
+        method: 'get',
+        url: 'http://localhost:3030/drawings'
       })
         .then(function (response) {
           console.log(response)
