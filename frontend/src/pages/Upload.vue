@@ -65,11 +65,11 @@
         :rules="[
         ]"
       />
-      <div>
+      <div class="q-pa-sm">
         <q-checkbox
           v-model="selection"
-          val="healthcarepersonnel"
-          label="healthcare personnel"
+          val="Hospital"
+          label="hospital"
           color="teal"
         />
         <q-checkbox
@@ -80,22 +80,16 @@
         />
         <q-checkbox
           v-model="selection"
-          val="paramedics"
-          label="paramedics"
-          color="red"
-        />
-        <q-checkbox
-          v-model="selection"
-          val="police"
-          label="police"
-          color="cyan"
+          val="firefighters"
+          label="firefighters"
+          color="orange"
         />
       </div>
-      <div>
+      <div class="q-pa-sm">
         <q-checkbox
           v-model="selection"
-          val="healthcarepersonnel"
-          label="healthcare personnel"
+          val="Hospital"
+          label="hospital"
           color="teal"
         />
         <q-checkbox
@@ -106,15 +100,29 @@
         />
         <q-checkbox
           v-model="selection"
-          val="paramedics"
-          label="paramedics"
-          color="red"
+          val="firefighters"
+          label="firefighters"
+          color="orange"
+        />
+      </div>
+      <div class="q-pa-sm">
+        <q-checkbox
+          v-model="selection"
+          val="Hospital"
+          label="hospital"
+          color="teal"
         />
         <q-checkbox
           v-model="selection"
-          val="police"
-          label="police"
-          color="cyan"
+          val="firefighters"
+          label="firefighters"
+          color="orange"
+        />
+        <q-checkbox
+          v-model="selection"
+          val="firefighters"
+          label="firefighters"
+          color="orange"
         />
       </div>
       <div>
