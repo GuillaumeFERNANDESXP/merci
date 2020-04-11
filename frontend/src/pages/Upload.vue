@@ -132,6 +132,12 @@
           type="submit"
           color="primary"
         />
+        <q-btn
+          disabled
+          label="Alfred was wrong?"
+          type="submit"
+          color="red"
+        />
       </div>
     </q-form>
 
