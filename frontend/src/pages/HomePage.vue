@@ -1,5 +1,15 @@
 <template>
   <div class="q-pa-md">
+    <div class="q-gutter-md">
+      <q-select
+        filled
+        v-model="model"
+        multiple
+        :options="options"
+        :loading="loading"
+        @virtual-scroll="onScroll"
+      />
+    </div>
     <div class="q-col-gutter-md row items-start">
       <div class="col-6">
         <q-zoom
@@ -12,7 +22,6 @@
       <div class="col-6">
         <q-img :src="url">
           <q-icon
-            @click="hello"
             class="absolute all-pointer-events"
             size="25px"
             name="info"
@@ -83,14 +92,43 @@
   </div>
 </template>
 <script>
+const options = []
+for (let i = 0; i <= 100000; i++) {
+  options.push('Opt ' + i)
+}
+
+const pageSize = 50
+const nextPage = 2
+const lastPage = Math.ceil(options.length / pageSize)
+
 export default {
   name: 'HomePage',
   data: () => ({
-    url: 'https://live.staticflickr.com/6140/5936324357_1e1bf0aa40_z.jpg'
+    url: 'https://live.staticflickr.com/6140/5936324357_1e1bf0aa40_z.jpg',
+    model: null,
+    loading: false,
+    nextPage
   }),
+  computed: {
+    options () {
+      return Object.freeze(options.slice(0, pageSize * (this.nextPage - 1)))
+    }
+  },
   methods: {
-    hello () {
-      console.log('hello')
+    onScroll ({ to, ref }) {
+      const lastIndex = this.options.length - 1
+
+      if (this.loading !== true && this.nextPage < lastPage && to === lastIndex) {
+        this.loading = true
+
+        setTimeout(() => {
+          this.nextPage++
+          this.$nextTick(() => {
+            ref.refresh()
+            this.loading = false
+          })
+        }, 500)
+      }
     }
   }
 }
