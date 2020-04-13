@@ -28,9 +28,6 @@
             color="white"
             style="top: 6px; left: 6px"
           >
-            <q-tooltip>
-              Tooltip
-            </q-tooltip>
           </q-icon>
         </q-img>
       </div>
