@@ -131,7 +131,9 @@ export default {
           console.log('found')
           this.isAdmin = true
         })
-        .catch(this.handleError)
+        .catch(function (err) {
+          console.log(err)
+        })
     },
     onScroll ({ to, ref }) {
       const lastIndex = this.options.length - 1
