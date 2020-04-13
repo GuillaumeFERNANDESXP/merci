@@ -21,6 +21,7 @@
     "socket.io-client": "^2.3.0",
     "vue-credit-card-validation": "^0.1.8",
     "vue-signature-pad": "^2.0.0",
+    "vue2-dropzone": "^3.6.0",
     "web3": "^1.2.6"
   },
   "devDependencies": {
