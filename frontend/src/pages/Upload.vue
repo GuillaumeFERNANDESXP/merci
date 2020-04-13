@@ -4,10 +4,8 @@
     <q-form class="q-gutter-md q-pa-md">
       <h6 class="text-center">Upload your drawing!</h6>
       <q-file
-        class="q-pa-xs"
         filled
         v-model="image"
-        style="max-width: 325px"
         label="Drawing"
       />
       <q-input
@@ -48,7 +46,7 @@
         ]"
           />
         </div>
-        <div class="col">
+        <div class="col on-right">
           <q-input
             filled
             v-model="codePostal"
@@ -436,8 +434,10 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-.q-card
-  height: 450px
+.q-file
+  max-width: 200px
+  margin-left: auto
+  margin-right: auto
 
 .q-form
   max-width: 600px
