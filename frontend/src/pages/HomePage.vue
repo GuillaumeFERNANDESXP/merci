@@ -2,6 +2,7 @@
   <div class="q-pa-md">
     <div class="q-gutter-md">
       <q-select
+        class="q-gutter-md q-pa-md"
         filled
         v-model="model"
         multiple
@@ -131,6 +132,12 @@ export default {
 }
 </script>
 <style lang="stylus">
+.q-select {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .my-image {
   width: 100%;
   height: auto;

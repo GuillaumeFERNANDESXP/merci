@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-lg">
 
-    <q-form class="q-gutter-md">
+    <q-form class="q-gutter-md q-pa-md">
       <h6 class="text-center">Upload your drawing!</h6>
       <q-file
         class="q-pa-xs"
@@ -29,30 +29,37 @@
           val => val > 0 && val < 100 || 'Please type a real age'
         ]"
       />
-      <q-select
-        filled
-        v-model="country"
-        label="Country *"
-        :options="optionsCountry"
-        option-value="code"
-        option-label="name"
-        option-disable="inactive"
-        emit-value
-        map-options
-        lazy-rules
-        :rules="[
+      <div class="row">
+        <div class="col on-left">
+          <q-select
+            filled
+            class="country"
+            v-model="country"
+            label="Country *"
+            :options="optionsCountry"
+            option-value="code"
+            option-label="name"
+            option-disable="inactive"
+            emit-value
+            map-options
+            lazy-rules
+            :rules="[
           val => val !== null && val !== '' || 'Please select a country',
         ]"
-      />
-      <q-input
-        filled
-        v-model="codePostal"
-        label="Postal code *"
-        lazy-rules
-        :rules="[
+          />
+        </div>
+        <div class="col">
+          <q-input
+            filled
+            v-model="codePostal"
+            label="Postal code *"
+            lazy-rules
+            :rules="[
           val => val !== null && val !== '' || 'Please select a postal code',
         ]"
-      />
+          />
+        </div>
+      </div>
       <q-input
         v-model="message"
         filled
@@ -431,4 +438,9 @@ export default {
 <style lang="sass" scoped>
 .q-card
   height: 450px
+
+.q-form
+  max-width: 600px
+  margin-left: auto
+  margin-right: auto
 </style>
