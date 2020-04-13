@@ -7,6 +7,9 @@
 export default {
   name: 'drawingView',
   data: () => ({
-  })
+  }),
+  created () {
+    //get Id => this.$route.params.id
+  }
 }
 </script>
