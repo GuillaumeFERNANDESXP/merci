@@ -1,81 +1,79 @@
 <template>
   <div class="q-pa-md">
-    <div class="q-gutter-md">
-      <div class="q-col-gutter-md row items-start">
-        <div class="col-6">
-          <q-zoom
-            background-color="blue-grey-1"
-            scale
-          >
-            <q-img :src="url" />
-          </q-zoom>
-        </div>
-        <div class="col-6">
-          <q-img :src="url">
-            <q-btn color="red">
-              Supprimer
-            </q-btn>
-          </q-img>
-        </div>
+    <div class="q-col-gutter-md row items-start">
+      <div class="col-6">
+        <q-img :src="url">
+          <q-btn color="red">
+            Supprimer
+          </q-btn>
+        </q-img>
+      </div>
+      <div class="col-6">
+        <q-img :src="url">
+          <q-btn color="red">
+            Supprimer
+          </q-btn>
+        </q-img>
+      </div>
 
-        <div class="col-6">
-          <q-img :src="url">
-            <q-btn color="red">
-              Supprimer
-            </q-btn>
-          </q-img>
-        </div>
+      <div class="col-6">
+        <q-img :src="url">
+          <q-btn color="red">
+            Supprimer
+          </q-btn>
+        </q-img>
+      </div>
 
-        <div class="col-6">
-          <q-img :src="url">
-          </q-img>
-        </div>
-        <div class="col-6">
-          <q-img
-            :src="url"
-            style="width: 100%"
-          >
-          </q-img>
-        </div>
+      <div class="col-6">
+        <q-img :src="url">
+        </q-img>
+      </div>
+      <div class="col-6">
+        <q-img
+          :src="url"
+          style="width: 100%"
+        >
+        </q-img>
+      </div>
 
-        <div class="col-6">
-          <q-img :src="url">
-          </q-img>
-        </div>
+      <div class="col-6">
+        <q-img :src="url">
+        </q-img>
+      </div>
 
-        <div class="col-6">
-          <q-img :src="url">
-          </q-img>
-        </div>
+      <div class="col-6">
+        <q-img :src="url">
+        </q-img>
+      </div>
 
-        <div class="col-6">
-          <q-img :src="url">
-          </q-img>
-        </div>
-        <div class="col-6">
-          <q-img
-            :src="url"
-            style="width: 100%"
-          >
-          </q-img>
-        </div>
+      <div class="col-6">
+        <q-img :src="url">
+        </q-img>
+      </div>
+      <div class="col-6">
+        <q-img
+          :src="url"
+          style="width: 100%"
+        >
+        </q-img>
+      </div>
 
-        <div class="col-6">
-          <q-img :src="url">
-          </q-img>
-        </div>
+      <div class="col-6">
+        <q-img :src="url">
+        </q-img>
+      </div>
 
-        <div class="col-6">
-          <q-img :src="url">
-          </q-img>
-        </div>
+      <div class="col-6">
+        <q-img :src="url">
+        </q-img>
+      </div>
 
-        <div class="col-6">
-          <q-img :src="url">
-          </q-img>
-        </div>
+      <div class="col-6">
+        <q-img :src="url">
+        </q-img>
       </div>
     </div>
+  </div>
 </template>
 <script>
 const options = []

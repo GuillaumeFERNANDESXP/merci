@@ -21,6 +21,12 @@ const routes = [
         name: 'UploadTest',
         props: true,
         component: () => import('pages/uploadTest.vue')
+      },
+      {
+        path: '/adminbravoes',
+        name: 'Admin',
+        props: true,
+        component: () => import('pages/Admin.vue')
       }
     ]
   }
