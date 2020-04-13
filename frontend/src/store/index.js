@@ -15,6 +15,7 @@ Vue.use(FeathersVuex)
 // Or you can import them manually for Rollup, etc.
 import users from './services/users'
 import drawings from './services/drawings'
+import emails from './services/emails'
 
 export default new Vuex.Store({
   state: {
@@ -28,6 +29,7 @@ export default new Vuex.Store({
     // if you're using require.context, spread the plugins into the array.
     users, // if you're manually importing, just add the plugins into the array, like this
     drawings,
+    emails,
     auth
   ]
 })
