@@ -1,6 +1,21 @@
 <template>
   <div class="q-pa-md">
-    <div class="q-col-gutter-md row items-start">
+    hello
+    <q-input
+      filled
+      outlined
+      v-model="email"
+      label="email"
+    ></q-input>
+    <q-btn
+      color="primary"
+      label="Submit"
+      @click="showContent"
+    ></q-btn>
+    <div
+      v-if="isAdmin"
+      class="q-col-gutter-md row items-start"
+    >
       <div class="col-6">
         <q-img :src="url">
           <q-btn color="red">
@@ -91,6 +106,8 @@ export default {
     url: 'https://live.staticflickr.com/6140/5936324357_1e1bf0aa40_z.jpg',
     model: null,
     loading: false,
+    isAdmin: false,
+    email: '',
     nextPage
   }),
   computed: {
@@ -99,6 +116,23 @@ export default {
     }
   },
   methods: {
+    showContent () {
+      const { Email } = this.$FeathersVuex.api
+      const query = {
+        query: {
+          email: this.email
+        }
+      }
+      Email.find(query)
+        .then(response => {
+          if (response.total === 0) {
+            console.log('no found')
+          }
+          console.log('found')
+          this.isAdmin = true
+        })
+        .catch(this.handleError)
+    },
     onScroll ({ to, ref }) {
       const lastIndex = this.options.length - 1
 

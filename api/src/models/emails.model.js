@@ -6,7 +6,12 @@ module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const emails = new Schema({
-    email: {}
+    email: {
+        type: String,
+        default: function() {
+          return { data: 'hello', info: 'hello' }
+        }
+    }
   }, {
     timestamps: true
   });

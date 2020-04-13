@@ -3,13 +3,13 @@ import feathersClient, { makeServicePlugin, BaseModel } from '../../feathers-cli
 // Extend the base class
 class Email extends BaseModel {
   // eslint-disable-next-line no-useless-constructor
-  constructor(data, options) {
+  constructor (data, options) {
     super(data, options)
   }
   static modelName = 'Email'
   static instanceDefaults () {
     return {
-      email: ''
+      email: {}
     }
   }
 }
