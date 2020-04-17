@@ -3,11 +3,10 @@
 
     <q-form class="q-gutter-md q-pa-md">
       <h6 class="text-center">Upload your drawing!</h6>
-      <q-file
-        filled
-        v-model="image"
-        label="Drawing"
-      />
+      <vue-dropzone
+        id="drop1"
+        :options="dropOptions"
+      ></vue-dropzone>
       <q-input
         filled
         v-model="firstName"
@@ -140,10 +139,19 @@
 </template>
 
 <script>
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 import axios from 'axios'
 export default {
   name: 'Upload',
+  components: {
+    vueDropzone: vue2Dropzone
+  },
   data: () => ({
+    dropOptions: {
+      url: 'http://localhost:3030/drawings',
+      paramName: 'files'
+    },
     image: null,
     firstName: '',
     age: '',

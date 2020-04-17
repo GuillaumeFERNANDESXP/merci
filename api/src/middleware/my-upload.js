@@ -6,7 +6,6 @@ module.exports = function (app) {
     // const seq = app.get('mongooseClient');
 
     for (const file of files) try {
-      console.log('hello lol')
       fileRes.push( // put in this array
         await app.service('drawings').create({
           path: file.path
