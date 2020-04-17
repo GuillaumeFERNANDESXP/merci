@@ -409,18 +409,16 @@ export default {
   }),
   methods: {
     testUploadFile () {
-      console.log('post')
+      console.log('get')
       axios({
-        method: 'get',
+        method: 'GET',
         url: 'http://localhost:3030/drawings'
       })
         .then(function (response) {
-          console.log(response)
-          this.$router.push({ name: 'SuccessUpload' })
+          console.log(response.data)
         })
         .catch(function (error) {
           console.log(error)
-          this.$router.push({ name: 'EchecUpload' })
         })
     },
     getCoordinates (zipcode, country) {
