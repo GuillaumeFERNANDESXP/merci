@@ -141,7 +141,6 @@
 <script>
 import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
-import axios from 'axios'
 export default {
   name: 'Upload',
   components: {
@@ -408,19 +407,6 @@ export default {
     selection: []
   }),
   methods: {
-    testUploadFile () {
-      console.log('get')
-      axios({
-        method: 'GET',
-        url: 'http://localhost:3030/drawings'
-      })
-        .then(function (response) {
-          console.log(response.data)
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    },
     getCoordinates (zipcode, country) {
       const API_KEY = ''
       fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + zipcode + country + '&key=' + API_KEY)
