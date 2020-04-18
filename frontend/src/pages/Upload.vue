@@ -128,7 +128,6 @@
       </div>
       <div>
         <q-btn
-          @click="testUploadFile"
           label="Submit"
           color="primary"
         />
@@ -414,13 +413,6 @@ export default {
         .then(data => {
           console.log(this.image)
         })
-    },
-    checkFileSize (files) {
-      return files.filter(file => file.size < 2048)
-    },
-
-    checkFileType (files) {
-      return files.filter(file => file.type === 'image/png')
     }
   }
 }

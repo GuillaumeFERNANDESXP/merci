@@ -54,13 +54,11 @@ export default {
         if (error.message.includes('No accessToken')) {
           // return console.log('app ready: no token found, please login')
         }
-        this.handleError(error)
       })
       .then(response => {
         if (!response) {
           // return console.error('Empty response, no session will be created')
         }
-        this.$store.dispatch('postLogin', response.body)
       })
   }
 }
