@@ -1,5 +1,3 @@
-var AWS = require('aws-sdk');
-
 module.exports = function (app) {
   return async (req, res) => {
     // console.log(req)
