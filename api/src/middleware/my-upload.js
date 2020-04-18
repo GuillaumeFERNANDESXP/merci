@@ -1,6 +1,6 @@
 module.exports = function (app) {
   return async (req, res) => {
-    console.log(req)
+    // console.log(req)
     const { files } = req; // request
     const fileRes = []; // array 
     // const seq = app.get('mongooseClient');
