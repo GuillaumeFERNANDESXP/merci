@@ -1,20 +1,27 @@
 const myDrawing = require('./my-upload');
+const aws = require('aws-sdk');
 const multer = require('multer');
+const multerS3 = require('multer-s3');
 
+aws.config.update({
+  secretAccessKey: 'BkWSTsR5kOVTapvm9uavPVig6F9ycKQ1GLnS+HHd',
+  accessKeyId: 'AKIA3TIMSXLLMH5E2GHH',
+  region: 'us-east-1'
+});
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'public/drawings'),
-  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`)
+var s3 = new aws.S3();
+
+var upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'bravoesbucket',
+    key: function (req, file, cb) {
+      console.log(file);
+      cb(null, file.originalname); //use Date.now() for unique file keys
+    }
+  })
 });
-const upload = multer({
-  storage,
-  limits: {
-    fieldSize: 1e+8, // Max field value size in bytes, here it's 100MB
-    fileSize: 1e+7 //  The max file size in bytes, here it's 10MB
-    // files: the number of files
-    // READ MORE https://www.npmjs.com/package/multer#limits
-  }
-});
+
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.use('/drawings', upload.array('files'), myDrawing(app));
