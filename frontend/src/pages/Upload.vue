@@ -3,10 +3,6 @@
 
     <q-form class="q-gutter-md q-pa-md">
       <h6 class="text-center">Upload your drawing!</h6>
-      <vue-dropzone
-        id="drop1"
-        :options="dropOptions"
-      ></vue-dropzone>
       <q-input
         filled
         v-model="firstName"
@@ -14,7 +10,12 @@
         lazy-rules
         :rules="[ val => val && val.length > 0 || 'Please type something']"
       />
-
+      <vue-dropzone
+        id="drop1"
+        :options="dropOptions"
+        v-on:vdropzone-file-added="fileAdded"
+      ></vue-dropzone>
+      {{firstName}}
       <q-input
         filled
         type="number"
@@ -148,7 +149,11 @@ export default {
   data: () => ({
     dropOptions: {
       url: 'http://localhost:3030/drawings',
-      paramName: 'files'
+      paramName: 'files',
+      renameFile: function (file) {
+        let name = new Date().getTime() + '_' + 'name' + 'localisation'
+        return name
+      }
     },
     image: null,
     firstName: '',
@@ -406,6 +411,10 @@ export default {
     selection: []
   }),
   methods: {
+    fileAdded (file) {
+      console.log(file.name)
+      return file
+    },
     getCoordinates (zipcode, country) {
       const API_KEY = ''
       fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + zipcode + country + '&key=' + API_KEY)
