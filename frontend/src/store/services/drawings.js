@@ -9,8 +9,7 @@ class Drawing extends BaseModel {
   static modelName = 'Drawing'
   static instanceDefaults () {
     return {
-      image: '',
-      firstName: '',
+      name: '',
       age: '',
       country: '',
       codePostal: '',

@@ -12,12 +12,11 @@
       ></vue-dropzone>
       <q-input
         filled
-        v-model="firstName"
+        v-model="name"
         label="Artist name *"
         lazy-rules
         :rules="[ val => val && val.length > 0 || 'Please type something']"
       />
-      {{firstName}}
       <q-input
         filled
         type="number"
@@ -51,7 +50,7 @@
         <div class="col on-right">
           <q-input
             filled
-            v-model="codePostal"
+            v-model="zipcode"
             label="Postal code *"
             lazy-rules
             :rules="[
@@ -71,19 +70,19 @@
       />
       <div class="q-pa-sm">
         <q-checkbox
-          v-model="selection"
+          v-model="tags"
           val="Hospital"
           label="hospital"
           color="teal"
         />
         <q-checkbox
-          v-model="selection"
+          v-model="tags"
           val="firefighters"
           label="firefighters"
           color="orange"
         />
         <q-checkbox
-          v-model="selection"
+          v-model="tags"
           val="firefighters"
           label="firefighters"
           color="orange"
@@ -91,27 +90,26 @@
       </div>
       <div class="q-pa-sm">
         <q-checkbox
-          v-model="selection"
+          v-model="tags"
           val="Hospital"
           label="hospital"
           color="teal"
         />
         <q-checkbox
-          v-model="selection"
+          v-model="tags"
           val="firefighters"
           label="firefighters"
           color="orange"
         />
         <q-checkbox
-          v-model="selection"
+          v-model="tags"
           val="firefighters"
           label="firefighters"
           color="orange"
         />
       </div>
-      <q-btn v-on:click="processFiles">Upload the things</q-btn>
+      <q-btn v-on:click="submit">Upload the things</q-btn>
     </q-form>
-
   </div>
 </template>
 
@@ -124,20 +122,11 @@ export default {
     vueDropzone: vue2Dropzone
   },
   data: () => ({
-    dropOptions: {
-      url: 'http://localhost:3030/drawings',
-      paramName: 'files',
-      autoProcessQueue: false,
-      renameFile: function (file) {
-        let name = new Date().getTime() + '_' + 'name' + 'localisation'
-        return name
-      }
-    },
     image: null,
-    firstName: '',
+    name: '',
     age: '',
     country: '',
-    codePostal: '',
+    zipcode: '',
     message: '',
     tags: null,
     model: null,
@@ -386,13 +375,33 @@ export default {
       { name: 'Zambia', code: 'ZM' },
       { name: 'Zimbabwe', code: 'ZW' }
     ],
-    selection: []
+    hashtags: []
   }),
+  computed: {
+    countryCode () {
+      return this.country
+    },
+    zipCode () {
+      return this.zipcode
+    },
+    dropOptions: function () {
+      return {
+        url: 'http://localhost:3030/drawings',
+        paramName: 'files',
+        autoProcessQueue: false,
+        renameFile: (file) => {
+          let timeStamp = new Date().getTime()
+          console.log(this.zipCode)
+          return this.countryCode + this.zipCode + timeStamp
+        }
+      }
+    }
+  },
   methods: {
     success (file) {
       console.log('A file was successfully uploaded')
     },
-    processFiles () {
+    submit () {
       this.$refs.myUniqueID.processQueue()
     },
     fileAdded (file) {

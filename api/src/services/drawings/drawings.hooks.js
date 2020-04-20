@@ -2,7 +2,10 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 
 module.exports = {
   before: {
-    all: [],
+    all: [async context => {
+      console.log(context.data)
+      return context;
+    }],
     find: [],
     get: [],
     create: [],
