@@ -109,13 +109,7 @@
           color="orange"
         />
       </div>
-      <div>
-        <q-btn v-on:click="processFiles">Upload the things</q-btn>
-        <q-btn
-          label="Submit"
-          color="primary"
-        />
-      </div>
+      <q-btn v-on:click="processFiles">Upload the things</q-btn>
     </q-form>
 
   </div>
