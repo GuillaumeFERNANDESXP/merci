@@ -4,9 +4,11 @@
     <q-form class="q-gutter-md q-pa-md">
       <h6 class="text-center">Upload your drawing!</h6>
       <vue-dropzone
-        id="drop1"
+        ref="myUniqueID"
+        :auto-process-queue="false"
         :options="dropOptions"
-        v-on:vdropzone-file-added="fileAdded"
+        id="myVueDropzone"
+        v-on:vdropzone-success="success"
       ></vue-dropzone>
       <q-input
         filled
@@ -128,6 +130,7 @@
         />
       </div>
       <div>
+        <q-btn v-on:click="processFiles">Upload the things</q-btn>
         <q-btn
           label="Submit"
           color="primary"
@@ -150,7 +153,7 @@ export default {
     dropOptions: {
       url: 'http://localhost:3030/drawings',
       paramName: 'files',
-      acceptedFiles: 'png',
+      autoProcessQueue: false,
       renameFile: function (file) {
         let name = new Date().getTime() + '_' + 'name' + 'localisation'
         return name
@@ -412,6 +415,12 @@ export default {
     selection: []
   }),
   methods: {
+    success (file) {
+      console.log('A file was successfully uploaded')
+    },
+    processFiles () {
+      this.$refs.myUniqueID.processQueue()
+    },
     fileAdded (file) {
       console.log(file.name)
       return file
