@@ -109,26 +109,6 @@
           color="orange"
         />
       </div>
-      <div class="q-pa-sm">
-        <q-checkbox
-          v-model="selection"
-          val="Hospital"
-          label="hospital"
-          color="teal"
-        />
-        <q-checkbox
-          v-model="selection"
-          val="firefighters"
-          label="firefighters"
-          color="orange"
-        />
-        <q-checkbox
-          v-model="selection"
-          val="firefighters"
-          label="firefighters"
-          color="orange"
-        />
-      </div>
       <div>
         <q-btn v-on:click="processFiles">Upload the things</q-btn>
         <q-btn
