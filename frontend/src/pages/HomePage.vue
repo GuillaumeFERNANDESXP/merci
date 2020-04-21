@@ -90,6 +90,8 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
+
 const options = []
 for (let i = 0; i <= 100000; i++) {
   options.push('Opt ' + i)
@@ -102,7 +104,7 @@ const lastPage = Math.ceil(options.length / pageSize)
 export default {
   name: 'HomePage',
   data: () => ({
-    url: 'https://live.staticflickr.com/6140/5936324357_1e1bf0aa40_z.jpg',
+    url: 'https://bravoes.imgix.net/bravoes_logo.jpg',
     model: null,
     loading: false,
     nextPage
@@ -113,6 +115,21 @@ export default {
     }
   },
   methods: {
+    getImg () {
+      let img = 'bravoes_logo.jpg'
+      return axios.get(`https://bravoes.imgix.net/${img}`)
+        .then(function (response) {
+          // handle success
+          console.log(response)
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error)
+        })
+        .then(function () {
+          // always executed
+        })
+    },
     onScroll ({ to, ref }) {
       const lastIndex = this.options.length - 1
 
