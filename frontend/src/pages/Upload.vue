@@ -12,7 +12,7 @@
       ></vue-dropzone>
       <q-input
         filled
-        v-model="name"
+        v-model="form.name"
         label="Artist name *"
         lazy-rules
         :rules="[ val => val && val.length > 0 || 'Please type something']"
@@ -20,7 +20,7 @@
       <q-input
         filled
         type="number"
-        v-model="age"
+        v-model="form.age"
         label="Artist age *"
         lazy-rules
         :rules="[
@@ -33,7 +33,7 @@
           <q-select
             filled
             class="country"
-            v-model="country"
+            v-model="form.country"
             label="Country *"
             :options="optionsCountry"
             option-value="code"
@@ -50,7 +50,7 @@
         <div class="col on-right">
           <q-input
             filled
-            v-model="zipcode"
+            v-model="form.zipcode"
             label="Postal code *"
             lazy-rules
             :rules="[
@@ -60,7 +60,7 @@
         </div>
       </div>
       <q-input
-        v-model="message"
+        v-model="form.message"
         filled
         label="Message"
         type="textarea"
@@ -70,19 +70,19 @@
       />
       <div class="q-pa-sm">
         <q-checkbox
-          v-model="tags"
+          v-model="form.tags"
           val="Hospital"
           label="hospital"
           color="teal"
         />
         <q-checkbox
-          v-model="tags"
+          v-model="form.tags"
           val="firefighters"
           label="firefighters"
           color="orange"
         />
         <q-checkbox
-          v-model="tags"
+          v-model="form.tags"
           val="firefighters"
           label="firefighters"
           color="orange"
@@ -90,25 +90,25 @@
       </div>
       <div class="q-pa-sm">
         <q-checkbox
-          v-model="tags"
+          v-model="form.tags"
           val="Hospital"
           label="hospital"
           color="teal"
         />
         <q-checkbox
-          v-model="tags"
+          v-model="form.tags"
           val="firefighters"
           label="firefighters"
           color="orange"
         />
         <q-checkbox
-          v-model="tags"
+          v-model="form.tags"
           val="firefighters"
           label="firefighters"
           color="orange"
         />
       </div>
-      <q-btn v-on:click="submit">Upload the things</q-btn>
+      <q-btn v-on:click="submitForm">Upload the things</q-btn>
     </q-form>
   </div>
 </template>
@@ -122,13 +122,15 @@ export default {
     vueDropzone: vue2Dropzone
   },
   data: () => ({
-    image: null,
-    name: '',
-    age: '',
-    country: '',
-    zipcode: '',
-    message: '',
-    tags: null,
+    form: {
+      image: null,
+      name: '',
+      age: '',
+      country: '',
+      zipcode: '',
+      message: '',
+      tags: null
+    },
     model: null,
     optionsCountry: [
       { name: 'Afghanistan', code: 'AF' },
@@ -398,6 +400,16 @@ export default {
     }
   },
   methods: {
+    submitForm () {
+      const { Drawing } = this.$FeathersVuex.api
+      const drawing = new Drawing(this.form)
+      drawing
+        .save()
+        .catch(this.handleError)
+        .then(drawing => {
+          console.log(drawing)
+        })
+    },
     success (file) {
       console.log('A file was successfully uploaded')
     },

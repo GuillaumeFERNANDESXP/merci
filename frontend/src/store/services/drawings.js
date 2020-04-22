@@ -12,7 +12,7 @@ class Drawing extends BaseModel {
       name: '',
       age: '',
       country: '',
-      codePostal: '',
+      zipcode: '',
       message: '',
       tags: ''
     }
