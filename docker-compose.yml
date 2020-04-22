@@ -32,7 +32,8 @@ services:
       - ./frontend/:/srv/app
       - frontend_node_modules:/srv/app/node_modules
     restart: 'no'
-    command: quasar dev
+    command:
+      - quasar serve
     stdin_open: true
     tty: true
     environment:
