@@ -1,6 +1,15 @@
 <template>
   <div class="q-pa-md">
     <div class="q-gutter-md">
+      <div
+        v-for="url in urls"
+        v-bind:key="url.index"
+      >
+        <div class="col-6">
+          <q-img :src="url">
+          </q-img>
+        </div>
+      </div>
       <q-select
         class="q-gutter-md q-pa-md"
         filled
@@ -12,76 +21,6 @@
       />
     </div>
     <div class="q-col-gutter-md row items-start">
-      <div class="col-6">
-        <q-zoom
-          background-color="blue-grey-1"
-          scale
-        >
-          <q-img :src="url" />
-        </q-zoom>
-      </div>
-      <div class="col-6">
-        <q-img :src="url">
-          <q-icon
-            class="absolute all-pointer-events"
-            size="25px"
-            name="info"
-            color="white"
-            style="top: 6px; left: 6px"
-          >
-          </q-icon>
-        </q-img>
-      </div>
-
-      <div class="col-6">
-        <q-img :src="url">
-        </q-img>
-      </div>
-
-      <div class="col-6">
-        <q-img :src="url">
-        </q-img>
-      </div>
-      <div class="col-6">
-        <q-img
-          :src="url"
-          style="width: 100%"
-        >
-        </q-img>
-      </div>
-
-      <div class="col-6">
-        <q-img :src="url">
-        </q-img>
-      </div>
-
-      <div class="col-6">
-        <q-img :src="url">
-        </q-img>
-      </div>
-
-      <div class="col-6">
-        <q-img :src="url">
-        </q-img>
-      </div>
-      <div class="col-6">
-        <q-img
-          :src="url"
-          style="width: 100%"
-        >
-        </q-img>
-      </div>
-
-      <div class="col-6">
-        <q-img :src="url">
-        </q-img>
-      </div>
-
-      <div class="col-6">
-        <q-img :src="url">
-        </q-img>
-      </div>
-
       <div class="col-6">
         <q-img :src="url">
         </q-img>
@@ -104,12 +43,12 @@ const lastPage = Math.ceil(options.length / pageSize)
 export default {
   name: 'HomePage',
   data: () => ({
-    url: 'https://bravoes.imgix.net/1587558116301',
+    urls: [],
     model: null,
     loading: false,
     nextPage
   }),
-  beforeMount () {
+  created () {
     const { Drawing } = this.$FeathersVuex.api
     const query = {
       query: {
@@ -120,24 +59,57 @@ export default {
       .then(response => {
         console.log(response.data.imgId)
         for (var i = 0; i < response.data.length; i++) {
-          console.log(response.data[i].imgId)
-          axios.get(`https://bravoes.imgix.net/${response.data[i].imgId}`)
-            .then(function (response) {
-              // handle success
-              console.log(response)
-            })
-            .catch(function (error) {
-              // handle error
-              console.log(error)
-            })
-            .then(function () {
-              // always executed
-            })
+          this.urls.push(`https://merci.imgix.net/${response.data[i].imgId}`)
+          console.log(this.urls)
+          // axios.get(`https://bravoes.imgix.net/${response.data[i].imgId}`)
+          //   .then(response => {
+          //     // handle success
+          //     this.data = response.data
+          //     console.log(this.data)
+          //     console.log(response)
+          //   })
+          //   .catch(function (error) {
+          //     // handle error
+          //     console.log(error)
+          //   })
+          //   .then(function () {
+          //     // always executed
+          //   })
         }
       })
-      .catch(this.handleError)
   },
   computed: {
+    dataRender: function () {
+      return function () {
+        const { Drawing } = this.$FeathersVuex.api
+        const query = {
+          query: {
+            flaggedAsDeleted: false
+          }
+        }
+        return Drawing.find(query)
+          .then(response => {
+            console.log(response.data.imgId)
+            for (var i = 0; i < response.data.length; i++) {
+              console.log(response.data[i].imgId)
+              axios.get(`https://bravoes.imgix.net/${response.data[i].imgId}`)
+                .then(function (response) {
+                  // handle success
+                  console.log(this.data)
+                  console.log(response)
+                })
+                .catch(function (error) {
+                  // handle error
+                  console.log(error)
+                })
+                .then(function () {
+                  // always executed
+                })
+            }
+          })
+          .catch(this.handleError)
+      }
+    },
     options () {
       return Object.freeze(options.slice(0, pageSize * (this.nextPage - 1)))
     }
