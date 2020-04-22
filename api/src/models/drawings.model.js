@@ -6,7 +6,7 @@ module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const drawings = new Schema({
-    imgPath: {
+    imgId: {
       type: String
     },
     name: {},

@@ -70,41 +70,21 @@
       />
       <div class="q-pa-sm">
         <q-checkbox
-          v-model="form.tags"
+          v-model="form.tags.hospital"
           val="Hospital"
           label="hospital"
           color="teal"
         />
         <q-checkbox
-          v-model="form.tags"
+          v-model="form.tags.firefighters"
           val="firefighters"
           label="firefighters"
           color="orange"
         />
         <q-checkbox
-          v-model="form.tags"
-          val="firefighters"
-          label="firefighters"
-          color="orange"
-        />
-      </div>
-      <div class="q-pa-sm">
-        <q-checkbox
-          v-model="form.tags"
-          val="Hospital"
-          label="hospital"
-          color="teal"
-        />
-        <q-checkbox
-          v-model="form.tags"
-          val="firefighters"
-          label="firefighters"
-          color="orange"
-        />
-        <q-checkbox
-          v-model="form.tags"
-          val="firefighters"
-          label="firefighters"
+          v-model="form.tags.policeman"
+          val="policeman"
+          label="policeman"
           color="orange"
         />
       </div>
@@ -123,13 +103,17 @@ export default {
   },
   data: () => ({
     form: {
-      image: null,
+      imgId: '',
       name: '',
       age: '',
       country: '',
       zipcode: '',
       message: '',
-      tags: null
+      tags: {
+        hospital: false,
+        firefighters: false,
+        policeman: false
+      }
     },
     model: null,
     optionsCountry: [
