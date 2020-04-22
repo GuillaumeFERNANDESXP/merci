@@ -109,6 +109,7 @@ export default {
       country: '',
       zipcode: '',
       message: '',
+      flaggedAsDeleted: false,
       tags: {
         hospital: false,
         firefighters: false,
@@ -397,6 +398,7 @@ export default {
         country: this.form.country,
         zipcode: this.form.zipcode,
         message: this.form.message,
+        flaggedAsDeleted: this.form.flaggedAsDeleted,
         tags: {
           hospital: this.form.tags.hospital,
           firefighters: this.form.tags.firefighters,

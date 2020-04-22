@@ -109,6 +109,22 @@ export default {
     loading: false,
     nextPage
   }),
+  mounted () {
+    const { Drawing } = this.$FeathersVuex.api
+    const query = {
+      query: {
+        flaggedAsDeleted: false
+      }
+    }
+    return Drawing.find(query)
+      .then(response => {
+        console.log(response.data.imgId)
+        for (var i = 0; i < response.data.length; i++) {
+          console.log(response.data[i].imgId)
+        }
+      })
+      .catch(this.handleError)
+  },
   computed: {
     options () {
       return Object.freeze(options.slice(0, pageSize * (this.nextPage - 1)))

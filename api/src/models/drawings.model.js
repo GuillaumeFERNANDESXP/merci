@@ -9,6 +9,7 @@ module.exports = function (app) {
     imgId: {
       type: String
     },
+    flaggedAsDeleted: {},
     name: {},
     age: {},
     country: {},
