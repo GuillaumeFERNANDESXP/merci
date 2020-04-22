@@ -104,7 +104,7 @@ const lastPage = Math.ceil(options.length / pageSize)
 export default {
   name: 'HomePage',
   data: () => ({
-    url: 'https://bravoes.imgix.net/bravoes_logo.jpg',
+    url: 'https://bravoes.imgix.net/1587558116301',
     model: null,
     loading: false,
     nextPage

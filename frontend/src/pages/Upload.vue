@@ -379,7 +379,7 @@ export default {
         renameFile: (file) => {
           let timeStamp = new Date().getTime()
           console.log(this.$store.state.imgId)
-          let newName = this.countryCode + this.zipCode + timeStamp + '.jpg'
+          let newName = this.countryCode + this.zipCode + timeStamp
           this.$store.commit('updateImgId', newName)
           console.log(this.$store.state.imgId)
           return newName
