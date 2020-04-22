@@ -3,13 +3,6 @@
 
     <q-form class="q-gutter-md q-pa-md">
       <h6 class="text-center">Upload your drawing!</h6>
-      <vue-dropzone
-        ref="myUniqueID"
-        :auto-process-queue="false"
-        :options="dropOptions"
-        id="myVueDropzone"
-        v-on:vdropzone-success="success"
-      ></vue-dropzone>
       <q-input
         filled
         v-model="form.name"
@@ -59,6 +52,13 @@
           />
         </div>
       </div>
+      <vue-dropzone
+        ref="myUniqueID"
+        :auto-process-queue="false"
+        :options="dropOptions"
+        id="myVueDropzone"
+        v-on:vdropzone-success="success"
+      ></vue-dropzone>
       <q-input
         v-model="form.message"
         filled
@@ -103,7 +103,7 @@ export default {
   },
   data: () => ({
     form: {
-      imgId: '',
+      imgId: 'lol',
       name: '',
       age: '',
       country: '',
@@ -365,10 +365,10 @@ export default {
   }),
   computed: {
     countryCode () {
-      return this.country
+      return this.form.country
     },
     zipCode () {
-      return this.zipcode
+      return this.form.zipcode
     },
     dropOptions: function () {
       return {
@@ -377,16 +377,32 @@ export default {
         autoProcessQueue: false,
         renameFile: (file) => {
           let timeStamp = new Date().getTime()
-          console.log(this.zipCode)
-          return this.countryCode + this.zipCode + timeStamp
+          console.log(this.$store.state.imgId)
+          let newName = this.countryCode + this.zipCode + timeStamp
+          this.$store.commit('updateImgId', newName)
+          console.log(this.$store.state.imgId)
+          return newName
         }
       }
     }
   },
   methods: {
     submitForm () {
+      console.log(this.$store.state.imgId)
       const { Drawing } = this.$FeathersVuex.api
-      const drawing = new Drawing(this.form)
+      const drawing = new Drawing({
+        imgId: this.$store.state.imgId,
+        name: this.form.name,
+        age: this.form.age,
+        country: this.form.country,
+        zipcode: this.form.zipcode,
+        message: this.form.message,
+        tags: {
+          hospital: this.form.tags.hospital,
+          firefighters: this.form.tags.firefighters,
+          policeman: this.form.tags.policeman
+        }
+      })
       drawing
         .save()
         .catch(this.handleError)

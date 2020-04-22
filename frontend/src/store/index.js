@@ -19,9 +19,13 @@ import emails from './services/emails'
 
 export default new Vuex.Store({
   state: {
+    imgId: ''
   },
   getters: {},
   mutations: {
+    updateImgId (state, name) {
+      state.imgId = name
+    }
   },
   actions: {
   },
