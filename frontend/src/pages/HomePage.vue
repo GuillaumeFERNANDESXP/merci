@@ -109,7 +109,7 @@ export default {
     loading: false,
     nextPage
   }),
-  mounted () {
+  beforeMount () {
     const { Drawing } = this.$FeathersVuex.api
     const query = {
       query: {
@@ -121,6 +121,18 @@ export default {
         console.log(response.data.imgId)
         for (var i = 0; i < response.data.length; i++) {
           console.log(response.data[i].imgId)
+          axios.get(`https://bravoes.imgix.net/${response.data[i].imgId}`)
+            .then(function (response) {
+              // handle success
+              console.log(response)
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error)
+            })
+            .then(function () {
+              // always executed
+            })
         }
       })
       .catch(this.handleError)
