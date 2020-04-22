@@ -408,12 +408,13 @@ export default {
         .catch(this.handleError)
         .then(drawing => {
           console.log(drawing)
+          this.submitFile()
         })
     },
     success (file) {
       console.log('A file was successfully uploaded')
     },
-    submit () {
+    submitFile () {
       this.$refs.myUniqueID.processQueue()
     },
     fileAdded (file) {
